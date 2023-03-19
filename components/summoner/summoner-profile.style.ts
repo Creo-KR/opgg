@@ -1,8 +1,9 @@
 import { css, Theme } from '@emotion/react';
 
 export default (theme: Theme) => css`
-  padding: 15px 0 14px;
+  padding: 15px 0 14px 21px;
   border-bottom: 1px solid #d8d8d8;
+
   .prev-tier-list {
     display: flex;
     margin-bottom: 6px;
@@ -54,6 +55,7 @@ export default (theme: Theme) => css`
         font-weight: bold;
         letter-spacing: -0.77px;
         color: ${theme.colors.charcoal};
+        margin-bottom: 4px;
       }
 
       > p {

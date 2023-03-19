@@ -89,7 +89,7 @@ export async function getServerSideApi<TResponse = any>(
     method: request.method,
     url: request.path,
   });
-  return response?.data;
+  return response;
 }
 
 export default ApiProvider;

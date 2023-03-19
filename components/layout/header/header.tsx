@@ -10,13 +10,6 @@ const Header: FC = () => {
         top: 0;
         background-color: ${theme.colors.azure};
         padding: 53px 0 12px;
-
-        .inner {
-          position: relative;
-          margin: auto;
-          max-width: 1000px;
-          padding: 0 16px;
-        }
       `}
     >
       <div className="inner">

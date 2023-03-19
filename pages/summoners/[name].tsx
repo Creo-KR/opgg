@@ -1,18 +1,25 @@
 import { getServerSideApi } from '@/api/provider/api-provider';
 import { getSummoner, SummonerDTO } from '@/api/summoner';
 import Title from '@/components/head/title';
+import SideInfo from '@/components/summoner/side-info';
 import SummonerProfile from '@/components/summoner/summoner-profile';
-import { GetServerSideProps, NextPage } from 'next';
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from 'next';
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps: GetServerSideProps<
+  SummonerPageProps
+> = async context => {
   const summonerName = context.query.name as string;
-  const apiData = await getServerSideApi(
+  const api = await getServerSideApi(
     getSummoner({
       summonerName,
     })
   );
 
-  return { props: { summonerName, apiData } };
+  return { props: { summonerName, apiData: api.data } };
 };
 
 interface SummonerPageProps {
@@ -20,10 +27,9 @@ interface SummonerPageProps {
   apiData: SummonerDTO;
 }
 
-const SummonerPage: NextPage<SummonerPageProps> = ({
-  summonerName,
-  apiData,
-}) => {
+const SummonerPage: NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ summonerName, apiData }) => {
   const summoner = apiData?.summoner;
   const wins = summoner?.leagues?.[0].wins;
   const losses = summoner?.leagues?.[0].losses;
@@ -38,6 +44,9 @@ const SummonerPage: NextPage<SummonerPageProps> = ({
       <Title title={summonerName} description={description} />
       <main>
         <SummonerProfile summoner={summoner} />
+        <div className="flex">
+          <SideInfo />
+        </div>
       </main>
     </>
   );
