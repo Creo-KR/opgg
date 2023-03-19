@@ -1,0 +1,7 @@
+{
+  "title-suffix": "- OP.GG Front_test",
+  "header-input-placeholder": "소환사명,챔피언…",
+  "home-title": "홈",
+  "home-desc": "소환사명을 검색해주세요.",
+  "summoner-ladder-rank": "레더 랭킹 <b>{{rank}}</b>위 (상위 {{percent}}%)"
+}
