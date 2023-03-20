@@ -2,6 +2,7 @@
 
 ## Tech Stack
 
-next.js emotion
-next-translate axios
-eslint prettier
+`typescript`
+`next.js` `emotion`
+`next-translate` `axios`
+`eslint` `prettier`
