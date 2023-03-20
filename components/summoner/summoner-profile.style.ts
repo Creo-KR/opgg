@@ -3,6 +3,7 @@ import { css, Theme } from '@emotion/react';
 export default (theme: Theme) => css`
   padding: 15px 0 14px 21px;
   border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 10px;
 
   .prev-tier-list {
     display: flex;

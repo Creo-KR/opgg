@@ -8,7 +8,7 @@ export default css`
   padding-left: 14px;
   border-radius: 2px;
   margin-left: auto;
-
+  position: relative;
   > input {
     flex-grow: 1;
     font-size: 12px;

@@ -6,8 +6,6 @@ const Header: FC = () => {
   return (
     <header
       css={theme => css`
-        position: sticky;
-        top: 0;
         background-color: ${theme.colors.azure};
         padding: 53px 0 12px;
       `}

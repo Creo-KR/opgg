@@ -3,5 +3,16 @@
   "header-input-placeholder": "소환사명,챔피언…",
   "home-title": "홈",
   "home-desc": "소환사명을 검색해주세요.",
-  "summoner-ladder-rank": "레더 랭킹 <b>{{rank}}</b>위 (상위 {{percent}}%)"
+  "summoner-ladder-rank": "레더 랭킹 <b>{{rank}}</b>위 (상위 {{percent}}%)",
+  "summoner-unranked": "Unranked",
+  "summoner-desc": "{{summonerName}} / Lv. {{level}} / {{wins}}승 {{losses}}패 승률 {{percent}}%",
+  "summoner-rank-games": "<b>{{position}}</b> (총 {{games}}게임)",
+  "summoner-rank-lp": "<b>{{lp}}LP</b> / {{wins}}승 {{losses}}패",
+  "summoner-rank-lp2": "승률 {{percent}}%",
+  "summoner-match-tab-all": "전체",
+  "summoner-match-tab-solo": "솔로게임",
+  "summoner-match-tab-free": "자유랭크",
+  "summoner-match-summary-games": "{{games}}전 {{wins}}승 {{losses}}패",
+  "summoner-match-summary-scores": "<b>{{kills}}</b> / <red>{{deaths}}</red> / <b>{{assists}}</b>",
+  "summoner-match-summary-kda": "<kda>{{kda}}</kda><kda1>:1</kda1> <kill>({{killPercent}}%)</kill>"
 }

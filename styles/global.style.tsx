@@ -65,8 +65,17 @@ export default function GlobalStyle() {
             padding: 0;
           }
 
+          svg,
+          path {
+            outline: 0;
+          }
+
           button {
             cursor: pointer;
+          }
+
+          a {
+            text-decoration: none;
           }
 
           b {

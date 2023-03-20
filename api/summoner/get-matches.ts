@@ -7,7 +7,7 @@ interface GetMatchesApiProps {
 
 export interface MatchesDTO {
   champions: Champion[];
-  games: GameInfo;
+  games: GameInfo[];
   positions: Position;
   summary: Summary;
 }
