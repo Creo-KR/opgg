@@ -1,8 +1,14 @@
 import { useSummonerContext } from '@/pages/summoners/[name]';
 import { useTheme } from '@emotion/react';
-import { FC, useLayoutEffect, useState } from 'react';
-import { Cell, Pie, PieChart } from 'recharts';
+import dynamic from 'next/dynamic';
+import { FC, useEffect, useState } from 'react';
+import { Cell, Pie } from 'recharts';
 import matchSummaryChartStyle from './match-summary-chart.style';
+
+const PieChart = dynamic(
+  import('recharts').then(mod => mod.PieChart),
+  { ssr: false }
+); // disable ssr
 
 interface MatchSummaryChartProps {
   wins: number;
@@ -17,7 +23,7 @@ const MatchSummaryChart: FC<MatchSummaryChartProps> = props => {
     []
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!props) {
       return;
     }

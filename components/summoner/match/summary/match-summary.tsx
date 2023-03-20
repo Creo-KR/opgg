@@ -106,8 +106,6 @@ const MatchSummary: FC = () => {
     };
   }, [tab, context.matchesDTO?.games]);
 
-  console.log(context.matchesDTO);
-
   return data ? (
     <div css={matchSummaryStyle}>
       <div className="statistics">

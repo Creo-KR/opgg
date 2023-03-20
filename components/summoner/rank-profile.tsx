@@ -19,7 +19,7 @@ const RankProfile: FC<RankProfileProps> = ({ league, name }) => {
       {league ? (
         <img className="rank-image" src={league?.tierRank.imageUrl} />
       ) : (
-        <img className="rank-image unranked" {...UnrankedImage} />
+        <img className="rank-image unranked" src={UnrankedImage.src} />
       )}
       <div className="rank-info">
         <h3>{league?.tierRank.name || name}</h3>

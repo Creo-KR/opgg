@@ -32,7 +32,7 @@ const MatchSummaryPosition: FC = () => {
   const context = useSummonerContext();
   const { t } = useTranslation('common');
 
-  const positions = context.matchesDTO?.positions?.sort(
+  const positions = [...(context.matchesDTO?.positions || [])]?.sort(
     (a, b) => b.games - a.games
   );
 
@@ -44,7 +44,7 @@ const MatchSummaryPosition: FC = () => {
       <ul>
         {positions.map(position => (
           <li key={`position-${position.position}`}>
-            <img {...mapper[position.position].image} />
+            <img src={mapper[position.position].image.src} />
             <div>
               <h4>{t(`position-${position.position}`)}</h4>
               <div className="flex">

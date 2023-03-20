@@ -64,7 +64,7 @@ const MatchSummaryChampion: FC<MatchSummaryChampionProps> = ({ champion }) => {
     </div>
   ) : (
     <div css={matchSummaryChampionStyle}>
-      <img {...ChampionImage} />
+      <img src={ChampionImage.src} />
       <p className="none">{t('summoner-match-summary-champion-none')}</p>
     </div>
   );
