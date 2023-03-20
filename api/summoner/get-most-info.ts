@@ -1,4 +1,4 @@
-import { Champion, ChampionWinRate } from '@/models';
+import { ChampionWinRate, MostChampion } from '@/models';
 import { ApiRequest } from '../provider/api-provider';
 
 interface GetMostInfoApiProps {
@@ -6,7 +6,7 @@ interface GetMostInfoApiProps {
 }
 
 export interface MostInfoDTO {
-  champions: Champion[];
+  champions: MostChampion[];
   recentWinRate: ChampionWinRate[];
 }
 

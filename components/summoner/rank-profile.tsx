@@ -15,7 +15,7 @@ const RankProfile: FC<RankProfileProps> = ({ league, name }) => {
   const context = useSummonerContext();
   const { t } = useTranslation('common');
   return (
-    <div css={rankProfileStyle}>
+    <section css={rankProfileStyle}>
       {league ? (
         <img className="rank-image" src={league?.tierRank.imageUrl} />
       ) : (
@@ -67,7 +67,7 @@ const RankProfile: FC<RankProfileProps> = ({ league, name }) => {
           <p className="unranked">{t('summoner-unranked')}</p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

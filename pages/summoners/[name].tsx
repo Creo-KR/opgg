@@ -1,8 +1,10 @@
 import { getServerSideApi } from '@/api/provider/api-provider';
 import {
   getMatches,
+  getMostInfo,
   getSummoner,
   MatchesDTO,
+  MostInfoDTO,
   SummonerDTO,
 } from '@/api/summoner';
 import Title from '@/components/head/title';
@@ -32,12 +34,18 @@ export const getServerSideProps: GetServerSideProps<
       summonerName,
     })
   );
+  const mostInfoDTO = await getServerSideApi(
+    getMostInfo({
+      summonerName,
+    })
+  );
 
   return {
     props: {
       summonerName,
       summonerDTO: summonerDTO.data,
       matchesDTO: matchesDTO.data,
+      mostInfoDTO: mostInfoDTO.data,
     },
   };
 };
@@ -46,11 +54,12 @@ interface SummonerPageProps {
   summonerName: string;
   summonerDTO: SummonerDTO;
   matchesDTO: MatchesDTO;
+  mostInfoDTO: MostInfoDTO;
 }
 
 const SummonerPage: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ summonerName, summonerDTO, matchesDTO }) => {
+> = ({ summonerName, summonerDTO, matchesDTO, mostInfoDTO }) => {
   const { t } = useTranslation('common');
   const summoner = summonerDTO?.summoner;
   const wins = summoner?.leagues?.[0].wins;
@@ -64,7 +73,9 @@ const SummonerPage: NextPage<
   });
 
   return (
-    <SummonerContext.Provider value={{ summonerName, summoner, matchesDTO }}>
+    <SummonerContext.Provider
+      value={{ summonerName, summoner, matchesDTO, mostInfoDTO }}
+    >
       <Title title={summonerName} description={description} />
       <main>
         <SummonerProfile />
@@ -80,6 +91,7 @@ interface SummonerContext {
   summonerName: string;
   summoner?: Summoner;
   matchesDTO?: MatchesDTO;
+  mostInfoDTO?: MostInfoDTO;
 }
 
 const SummonerContext = createContext<SummonerContext>({ summonerName: '' });

@@ -1,6 +1,6 @@
 import { MostChampion } from '@/models';
 import ChampionImage from '@/public/images/champion.png';
-import { getChampionName } from '@/utils/convert';
+import { getChampionName, getWinRateClass } from '@/utils/convert';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
 import { FC, useMemo } from 'react';
@@ -25,7 +25,7 @@ const MatchSummaryChampion: FC<MatchSummaryChampionProps> = ({ champion }) => {
       (champion.wins / (champion.wins + champion.losses)) * 100
     );
 
-    const winRateClass = winRate >= 60 ? 'red' : '';
+    const winRateClass = getWinRateClass(winRate);
 
     const scoreClass = champion.kda >= 6 ? 'kda6' : '';
 

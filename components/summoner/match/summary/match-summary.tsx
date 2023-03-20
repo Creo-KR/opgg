@@ -1,6 +1,6 @@
 import { MostChampion } from '@/models';
 import { useSummonerContext } from '@/pages/summoners/[name]';
-import { getChampionName } from '@/utils/convert';
+import { getChampionName, getKDAClass } from '@/utils/convert';
 import Trans from 'next-translate/Trans';
 import { FC, useMemo } from 'react';
 import { useMatchContext } from '../matches';
@@ -85,10 +85,9 @@ const MatchSummary: FC = () => {
     );
 
     const kda =
-      Math.round(((sum.kills + sum.assists) / sum.deaths) * 100) / 100;
+      Math.round(((sum.kills + sum.assists) / sum.deaths) * 100) / 100 || 0;
 
-    const kdaClass =
-      kda >= 5 ? 'kda5' : kda >= 4 ? 'kda4' : kda >= 3 ? 'kda3' : '';
+    const kdaClass = getKDAClass(kda);
 
     const killRate = Math.round(sum.contributionForKillRate / games.length);
 
@@ -129,9 +128,9 @@ const MatchSummary: FC = () => {
                 ns="common"
                 components={{ b: <b />, red: <b className="red" /> }}
                 values={{
-                  kills: data.kills,
-                  deaths: data.deaths,
-                  assists: data.assists,
+                  kills: Math.round((data.kills / data.games) * 10) / 10,
+                  deaths: Math.round((data.deaths / data.games) * 10) / 10,
+                  assists: Math.round((data.assists / data.games) * 10) / 10,
                 }}
               />
             </p>
