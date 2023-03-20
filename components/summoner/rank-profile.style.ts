@@ -1,9 +1,10 @@
 import { css, Theme } from '@emotion/react';
 
 export default (theme: Theme) => css`
+  width: 282px;
   border: 1px solid #cdd2d2;
   background-color: ${theme.colors.white};
-  padding: 10px 87px 10px 8px;
+  padding: 10px 8px 10px 8px;
   border-radius: 2px;
   margin-bottom: 8px;
   display: flex;

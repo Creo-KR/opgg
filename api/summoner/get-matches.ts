@@ -1,4 +1,4 @@
-import { Champion, GameInfo, Position, Summary } from '@/models';
+import { ChampionWinRate, GameInfo, Position, Summary } from '@/models';
 import { ApiRequest } from '../provider/api-provider';
 
 interface GetMatchesApiProps {
@@ -6,9 +6,9 @@ interface GetMatchesApiProps {
 }
 
 export interface MatchesDTO {
-  champions: Champion[];
+  champions: ChampionWinRate[];
   games: GameInfo[];
-  positions: Position;
+  positions: Position[];
   summary: Summary;
 }
 

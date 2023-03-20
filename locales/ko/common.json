@@ -14,5 +14,16 @@
   "summoner-match-tab-free": "자유랭크",
   "summoner-match-summary-games": "{{games}}전 {{wins}}승 {{losses}}패",
   "summoner-match-summary-scores": "<b>{{kills}}</b> / <red>{{deaths}}</red> / <b>{{assists}}</b>",
-  "summoner-match-summary-kda": "<kda>{{kda}}</kda><kda1>:1</kda1> <kill>({{killPercent}}%)</kill>"
+  "summoner-match-summary-kda": "<kda>{{kda}}</kda><kda1>:1</kda1> <kill>({{killPercent}}%)</kill>",
+  "summoner-match-summary-champion-win": "<rate><b>{{winRate}}</b>%</rate> ({{wins}}승 {{losses}}패)",
+  "summoner-match-summary-champion-score": "{{score}} 평점",
+  "summoner-match-summary-champion-none": "챔피언 정보가 없습니다.",
+  "summoner-match-summary-position": "선호 포지션 (랭크)",
+  "summoner-match-summary-position-pick": "<blue><b>{{percent}}</b>%</blue>",
+  "summoner-match-summary-position-win": "승률 <b>{{percent}}</b>%",
+  "position-TOP": "탑",
+  "position-MID": "미드",
+  "position-JNG": "정글",
+  "position-ADC": "원딜",
+  "position-SUP": "서포터"
 }

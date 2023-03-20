@@ -58,4 +58,12 @@ export default (theme: Theme) => css`
       }
     }
   }
+
+  .champion {
+    padding: 16px;
+
+    li:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
 `;

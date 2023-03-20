@@ -1,15 +1,19 @@
 import { css } from '@emotion/react';
-import { createContext, FC, useState } from 'react';
-import MatchHeader from './match/match-header';
+import { createContext, FC, useContext, useState } from 'react';
+import MatchHeader from './match-header';
 
 interface MatchContext {
   tab: string;
   setTab: (v: string) => void;
 }
-export const MatchContext = createContext<MatchContext>({
+const MatchContext = createContext<MatchContext>({
   tab: 'all',
   setTab: () => {},
 });
+
+export function useMatchContext() {
+  return useContext(MatchContext);
+}
 
 const Matches: FC = () => {
   const [tab, setTab] = useState('all');

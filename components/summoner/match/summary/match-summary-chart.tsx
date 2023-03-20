@@ -1,36 +1,37 @@
 import { useSummonerContext } from '@/pages/summoners/[name]';
 import { useTheme } from '@emotion/react';
-import { FC, useEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import { Cell, Pie, PieChart } from 'recharts';
 import matchSummaryChartStyle from './match-summary-chart.style';
 
-const MatchSummaryChart: FC = () => {
+interface MatchSummaryChartProps {
+  wins: number;
+  losses: number;
+}
+
+const MatchSummaryChart: FC<MatchSummaryChartProps> = props => {
   const c = useSummonerContext();
   const theme = useTheme();
-  const summary = c.matchesDTO?.summary;
 
   const [chartData, setChartData] = useState<{ name: string; value: number }[]>(
     []
   );
 
-  useEffect(() => {
-    if (!summary) {
+  useLayoutEffect(() => {
+    if (!props) {
       return;
     }
 
     setChartData([
-      { name: 'wins', value: summary.wins },
-      { name: 'losses', value: summary.losses },
+      { name: 'wins', value: props.wins },
+      { name: 'losses', value: props.losses },
     ]);
-  }, []);
+  }, [props]);
 
-  return summary ? (
+  return props ? (
     <div css={matchSummaryChartStyle} className="statistics-chart">
       <p className="statistics-chart-text">
-        <b>
-          {Math.trunc((summary.wins / (summary.wins + summary.losses)) * 100)}
-        </b>
-        %
+        <b>{Math.trunc((props.wins / (props.wins + props.losses)) * 100)}</b>%
       </p>
       <PieChart width={90} height={90}>
         <Pie

@@ -108,7 +108,7 @@ export interface MapInfo extends ImageObj {
 export interface Position {
   games: number;
   losses: number;
-  position: string;
+  position: 'TOP' | 'JNG' | 'MID' | 'ADC' | 'SUP';
   positionName: string;
   wins: number;
 }
@@ -136,9 +136,8 @@ export interface MostChampion {
   wins: number;
 }
 
-export interface ChampionWinRate {
+export interface ChampionWinRate extends ImageObj {
   id: number;
-  imageUrl: string;
   key: string;
   losses: number;
   name: string;

@@ -6,7 +6,7 @@ import {
   SummonerDTO,
 } from '@/api/summoner';
 import Title from '@/components/head/title';
-import Matches from '@/components/summoner/matches';
+import Matches from '@/components/summoner/match/matches';
 import SideInfo from '@/components/summoner/side-info';
 import SummonerProfile from '@/components/summoner/summoner-profile';
 import { Summoner } from '@/models';

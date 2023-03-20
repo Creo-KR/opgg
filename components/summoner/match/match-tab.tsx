@@ -1,12 +1,12 @@
 import useTranslation from 'next-translate/useTranslation';
-import { FC, useContext } from 'react';
-import { MatchContext } from '../matches';
+import { FC } from 'react';
 import matchRankTabStyle from './match-tab.style';
+import { useMatchContext } from './matches';
 
 const tabKeys = ['all', 'solo', 'free'];
 
 const MatchTab: FC = () => {
-  const context = useContext(MatchContext);
+  const context = useMatchContext();
   const { t } = useTranslation('common');
 
   function handleChange(key: string) {

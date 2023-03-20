@@ -1,4 +1,5 @@
 import { League } from '@/models';
+import { useSummonerContext } from '@/pages/summoners/[name]';
 import UnrankedImage from '@/public/images/unranked.png';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
@@ -11,6 +12,7 @@ interface RankProfileProps {
 }
 
 const RankProfile: FC<RankProfileProps> = ({ league, name }) => {
+  const context = useSummonerContext();
   const { t } = useTranslation('common');
   return (
     <div css={rankProfileStyle}>
@@ -28,7 +30,12 @@ const RankProfile: FC<RankProfileProps> = ({ league, name }) => {
                 i18nKey="summoner-rank-games"
                 ns="common"
                 components={{ b: <b /> }}
-                values={{ games: league.wins + league.losses }}
+                values={{
+                  games: league.wins + league.losses,
+                  position: t(
+                    `position-${context.matchesDTO?.positions?.[0]?.position}`
+                  ),
+                }}
               />
             </p>
             <p className="rank-tier">{league.tierRank.tierDivision}</p>
