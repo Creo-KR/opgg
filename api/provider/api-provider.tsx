@@ -27,6 +27,7 @@ interface ApiProviderProps {
 export interface ApiRequest<TResponse = any> {
   path: string;
   method?: 'get' | 'post';
+  baseURL?: string;
 }
 
 const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
@@ -72,8 +73,13 @@ export function useApi<TResponse = any>(
   const context = useContext(apiContext);
 
   useEffect(() => {
+    console.log('test', props.path);
+  }, []);
+
+  useEffect(() => {
+    console.log(toApiKey(props));
     context.request(props);
-  }, [props.path, props.method]);
+  }, [toApiKey(props)]);
 
   return context.apiState[toApiKey(props)];
 }
@@ -85,7 +91,7 @@ export async function getServerSideApi<TResponse = any>(
     headers: {
       Accept: 'application/json;charset=UTF-8',
     },
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    baseURL: request.baseURL || process.env.NEXT_PUBLIC_API_BASE_URL,
     method: request.method,
     url: request.path,
   });

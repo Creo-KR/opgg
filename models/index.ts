@@ -148,3 +148,14 @@ export interface LadderRank {
   rank: number;
   rankPercentOfTop: number;
 }
+
+export interface ItemInfo {
+  colloq: string;
+  description: string;
+  gold: { base: number; purchasable: boolean; total: number; sell: number };
+  into: string[];
+  name: string;
+  plaintext: string;
+  stats: { FlatMovementSpeedMod: number };
+  tags: string[];
+}

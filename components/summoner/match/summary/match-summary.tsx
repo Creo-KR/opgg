@@ -10,27 +10,13 @@ import MatchSummaryPosition from './match-summary-position';
 import matchSummaryStyle from './match-summary.style';
 
 const MatchSummary: FC = () => {
-  const { tab } = useMatchContext();
+  const { tab, games } = useMatchContext();
   const context = useSummonerContext();
 
   const data = useMemo(() => {
     if (!context.matchesDTO?.games) {
       return;
     }
-
-    const games = context.matchesDTO?.games.filter(game => {
-      if (tab === 'all') {
-        return true;
-      }
-
-      if (tab === 'solo') {
-        return game.gameType === '솔랭';
-      }
-
-      if (tab === 'free') {
-        return game.gameType === '자유 5:5 랭크';
-      }
-    });
 
     const sum = games.reduce(
       (prev, curr) => {
