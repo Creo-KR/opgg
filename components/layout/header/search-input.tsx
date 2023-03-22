@@ -5,7 +5,7 @@ import SearchAutoComplete from './search-auto-complete';
 import SearchHistory, { pushHistory } from './search-history';
 import serachInputStyle from './serach-input.style';
 
-const illegalName = /[^A-z가-힣 0-9]/g;
+const illegalName = /[^A-zㄱ-힣0-9 ]/g;
 
 const SearchInput: FC = () => {
   const router = useRouter();
@@ -39,7 +39,7 @@ const SearchInput: FC = () => {
         onBlur={() => setTimeout(() => setModal(false), 100)}
       />
       <button></button>
-      {!modal &&
+      {modal &&
         (summonerNameInput ? (
           <SearchAutoComplete summonerName={summonerNameInput || ''} />
         ) : (

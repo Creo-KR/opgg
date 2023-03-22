@@ -12,7 +12,7 @@ interface SearchAutoCompleteProps {
 const SearchAutoComplete: FC<SearchAutoCompleteProps> = ({ summonerName }) => {
   const api = useApi(getSummoner({ summonerName }));
 
-  const summoner = api?.data.summoner;
+  const summoner = api && api?.data.summoner;
 
   return summoner ? (
     <nav css={searchAutoCompleteStyle}>

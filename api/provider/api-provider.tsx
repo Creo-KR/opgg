@@ -11,7 +11,7 @@ import {
 
 interface ApiContext {
   axios?: AxiosInstance;
-  apiState: Record<string, AxiosResponse>;
+  apiState: Record<string, AxiosResponse | false>;
   request: (request: ApiRequest) => void;
 }
 
@@ -32,7 +32,9 @@ export interface ApiRequest<TResponse = any> {
 
 const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
   const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [apiState, setApiState] = useState<Record<string, AxiosResponse>>({});
+  const [apiState, setApiState] = useState<
+    Record<string, AxiosResponse | false>
+  >({});
 
   const axiosInstance = useMemo(() => {
     return axios.create({
@@ -41,6 +43,11 @@ const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
   }, [baseURL]);
 
   async function request<TResponse = any>(request: ApiRequest<TResponse>) {
+    setApiState(apiState => ({
+      ...apiState,
+      [toApiKey(request)]: false,
+    }));
+
     const method = request.method || 'get';
     const url = request.path;
     const response = await axiosInstance.request<TResponse>({
@@ -69,7 +76,7 @@ function toApiKey(request: ApiRequest) {
 
 export function useApi<TResponse = any>(
   props: ApiRequest<TResponse>
-): AxiosResponse<TResponse> | undefined {
+): AxiosResponse<TResponse> | false {
   const context = useContext(apiContext);
 
   useEffect(() => {
