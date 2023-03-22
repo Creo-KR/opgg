@@ -2,7 +2,10 @@ import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import { FC, FormEvent, useEffect, useState } from 'react';
 import SearchAutoComplete from './search-auto-complete';
+import SearchHistory, { pushHistory } from './search-history';
 import serachInputStyle from './serach-input.style';
+
+const illegalName = /[^A-z가-힣 0-9]/g;
 
 const SearchInput: FC = () => {
   const router = useRouter();
@@ -11,12 +14,13 @@ const SearchInput: FC = () => {
   const [modal, setModal] = useState(false);
 
   function handleChange(value: string) {
-    setSummonerNameInput(value);
+    setSummonerNameInput(value.replace(illegalName, ''));
     setModal(true);
   }
 
   function handleSearch(e: FormEvent) {
     router.push(`/summoners/${summonerNameInput}`);
+    pushHistory(summonerNameInput);
     e.preventDefault();
   }
 
@@ -35,9 +39,12 @@ const SearchInput: FC = () => {
         onBlur={() => setTimeout(() => setModal(false), 100)}
       />
       <button></button>
-      {summonerNameInput && modal && (
-        <SearchAutoComplete summonerName={summonerNameInput || ''} />
-      )}
+      {!modal &&
+        (summonerNameInput ? (
+          <SearchAutoComplete summonerName={summonerNameInput || ''} />
+        ) : (
+          <SearchHistory />
+        ))}
     </form>
   );
 };

@@ -76,6 +76,7 @@ export default function GlobalStyle() {
 
           a {
             text-decoration: none;
+            color: inherit;
           }
 
           b {

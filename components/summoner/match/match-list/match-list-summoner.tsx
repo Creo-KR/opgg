@@ -1,7 +1,9 @@
 import { useApi } from '@/api/provider/api-provider';
 import { getMatchDetail } from '@/api/summoner';
+import { pushHistory } from '@/components/layout/header/search-history';
 import { useSummonerContext } from '@/pages/summoners/[name]';
-import { FC } from 'react';
+import Link from 'next/link';
+import { FC, memo } from 'react';
 import matchListSummonerStyle from './match-list-summoner.style';
 
 interface MatchListItemProps {
@@ -25,7 +27,12 @@ const MatchListSummoner: FC<MatchListItemProps> = ({ gameId }) => {
               key={`summoner-${summoner.summonerId}`}
             >
               <img src={summoner.champion.imageUrl} />
-              <p>{summoner.summonerName}</p>
+              <Link
+                onClickCapture={() => pushHistory(summoner.summonerName)}
+                href={`/summoners/${summoner.summonerName}`}
+              >
+                {summoner.summonerName}
+              </Link>
             </li>
           ))}
         </ul>
@@ -34,4 +41,4 @@ const MatchListSummoner: FC<MatchListItemProps> = ({ gameId }) => {
   );
 };
 
-export default MatchListSummoner;
+export default memo(MatchListSummoner);

@@ -3,7 +3,8 @@ import { css, Theme } from '@emotion/react';
 export default (theme: Theme) => css`
   position: absolute;
   z-index: 1;
-  transform: translate(-14px, 50px);
+  left: 0px;
+  top: 36px;
   background-color: #fff;
   border-radius: 2px;
   cursor: pointer;

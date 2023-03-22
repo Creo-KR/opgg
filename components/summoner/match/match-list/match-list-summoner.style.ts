@@ -16,7 +16,7 @@ export default (theme: Theme) => css`
       border: solid 1px #0d0819;
       margin-right: 3px;
     }
-    p {
+    a {
       font-size: 11px;
       letter-spacing: -0.42px;
       color: ${theme.colors.greyishBrown};

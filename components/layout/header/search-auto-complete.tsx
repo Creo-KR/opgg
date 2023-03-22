@@ -3,6 +3,7 @@ import { getSummoner } from '@/api/summoner';
 import Link from 'next/link';
 import { FC } from 'react';
 import searchAutoCompleteStyle from './search-auto-complete.style';
+import { pushHistory } from './search-history';
 
 interface SearchAutoCompleteProps {
   summonerName: string;
@@ -15,7 +16,10 @@ const SearchAutoComplete: FC<SearchAutoCompleteProps> = ({ summonerName }) => {
 
   return summoner ? (
     <nav css={searchAutoCompleteStyle}>
-      <Link href={`/summoners/${summonerName}`}>
+      <Link
+        onClickCapture={() => pushHistory(summonerName)}
+        href={`/summoners/${summonerName}`}
+      >
         <img src={summoner.profileImageUrl} />
         <div>
           <h2>

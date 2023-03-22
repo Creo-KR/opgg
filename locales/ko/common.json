@@ -3,6 +3,7 @@
   "header-input-placeholder": "소환사명,챔피언…",
   "home-title": "홈",
   "home-desc": "소환사명을 검색해주세요.",
+  "search-history": "최근 검색",
   "summoner-ladder-rank": "레더 랭킹 <b>{{rank}}</b>위 (상위 {{percent}}%)",
   "summoner-unranked": "Unranked",
   "summoner-desc": "{{summonerName}} / Lv. {{level}} / {{wins}}승 {{losses}}패 승률 {{percent}}%",

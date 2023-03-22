@@ -133,7 +133,7 @@ const MatchList: FC = () => {
             </p>
           </div>
           <div className="summoner-wrap col6">
-            <MatchListSummoner gameId={game.gameId} />
+            <MatchListSummoner key={game.gameId} gameId={game.gameId} />
           </div>
         </li>
       );

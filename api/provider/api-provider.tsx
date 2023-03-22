@@ -73,11 +73,6 @@ export function useApi<TResponse = any>(
   const context = useContext(apiContext);
 
   useEffect(() => {
-    console.log('test', props.path);
-  }, []);
-
-  useEffect(() => {
-    console.log(toApiKey(props));
     context.request(props);
   }, [toApiKey(props)]);
 
