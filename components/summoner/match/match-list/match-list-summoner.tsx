@@ -13,7 +13,7 @@ interface MatchListItemProps {
 const MatchListSummoner: FC<MatchListItemProps> = ({ gameId }) => {
   const { summonerName } = useSummonerContext();
   const api = useApi(getMatchDetail({ summonerName, gameId }));
-  const detail = api?.data;
+  const detail = api && api?.data;
 
   return (
     <div className="summoners" css={matchListSummonerStyle}>

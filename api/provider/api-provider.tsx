@@ -6,12 +6,13 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 
 interface ApiContext {
   axios?: AxiosInstance;
-  apiState: Record<string, AxiosResponse | false>;
+  apiState: Record<string, AxiosResponse>;
   request: (request: ApiRequest) => void;
 }
 
@@ -32,9 +33,8 @@ export interface ApiRequest<TResponse = any> {
 
 const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
   const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [apiState, setApiState] = useState<
-    Record<string, AxiosResponse | false>
-  >({});
+  const [apiState, setApiState] = useState<Record<string, AxiosResponse>>({});
+  const apiCache = useRef<Record<string, number>>({});
 
   const axiosInstance = useMemo(() => {
     return axios.create({
@@ -43,10 +43,18 @@ const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
   }, [baseURL]);
 
   async function request<TResponse = any>(request: ApiRequest<TResponse>) {
-    setApiState(apiState => ({
-      ...apiState,
-      [toApiKey(request)]: false,
-    }));
+    const now = new Date().getTime();
+
+    function isExpired() {
+      const cacheTime = apiCache.current[toApiKey(request)] || 0;
+      return cacheTime + 30000 < now;
+    }
+
+    if (!isExpired()) {
+      return;
+    }
+
+    apiCache.current[toApiKey(request)] = now;
 
     const method = request.method || 'get';
     const url = request.path;
@@ -64,7 +72,13 @@ const ApiProvider: FC<ApiProviderProps> = ({ children }) => {
   }
 
   return (
-    <apiContext.Provider value={{ axios: axiosInstance, apiState, request }}>
+    <apiContext.Provider
+      value={{
+        axios: axiosInstance,
+        apiState,
+        request,
+      }}
+    >
       {children}
     </apiContext.Provider>
   );
@@ -76,7 +90,7 @@ function toApiKey(request: ApiRequest) {
 
 export function useApi<TResponse = any>(
   props: ApiRequest<TResponse>
-): AxiosResponse<TResponse> | false {
+): AxiosResponse<TResponse> | undefined {
   const context = useContext(apiContext);
 
   useEffect(() => {
